@@ -1,0 +1,563 @@
+/* style.css */
+
+/* Core Variables */
+:root {
+    --color-primary: #ff7e33;
+    /* Smooth modern orange */
+    --bg-black: #000000;
+    --bg-glow-center: #3a1f0f;
+    --bg-glow-edge: #0a0502;
+    --text-main: #f5f5f7;
+    --text-muted: #a1a1aa;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-black);
+    overflow-x: hidden;
+}
+
+/* Premium Cinematic Background */
+body {
+    /* Glow originating from the right side */
+    background: radial-gradient(circle at 85% 50%, var(--bg-glow-center) 0%, var(--bg-glow-edge) 45%, var(--bg-black) 80%);
+    background-attachment: fixed;
+}
+
+/* Header & Navbar Setup */
+header {
+    width: 100%;
+    padding: 2rem 4rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    /* Transparent by default, can add blur if needed later */
+    background: transparent;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Brand styling */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.burger-emoji {
+    font-size: 1.6rem;
+    /* Slight animation on hover for a premium feel */
+    transition: transform 0.3s ease;
+}
+
+.brand:hover .burger-emoji {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--color-primary);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Login Button */
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 126, 51, 0.1);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 15px rgba(255, 126, 51, 0.2);
+}
+
+/* Hero Section */
+.hero-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    /* Changed from hidden to allow burger animation */
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    /* Adjust for navbar space */
+}
+
+/* Background text styling */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(80px, 18vw, 320px);
+    font-weight: 800;
+    letter-spacing: 10px;
+    z-index: 1;
+    /* lowest layer */
+    /* Pure white text */
+    color: #ffffff;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* Layer container */
+.hero-layers {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    /* Middle base layer */
+}
+
+/* Main Burger - highest priority */
+.burger-main {
+    width: 90%;
+    height: auto;
+    position: relative;
+    z-index: 10;
+    /* Highest foreground */
+    filter: drop-shadow(0 40px 40px rgba(0, 0, 0, 0.8));
+}
+
+/* Ingredients positioning with z-index matching */
+.ingredient {
+    position: absolute;
+    width: auto;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7));
+}
+
+/* Background Ingredients */
+.latus1 {
+    top: -5%;
+    left: -15%;
+    width: 35%;
+    z-index: 30;
+    /* Above burger */
+    transform: rotate(-15deg);
+    filter: brightness(1.3) drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+    /* Bright, no blur */
+}
+
+.tamato1 {
+    bottom: 5%;
+    right: -15%;
+    width: 25%;
+    z-index: 30;
+    /* Behind burger */
+    transform: rotate(20deg);
+    filter: blur(1.5px) drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+}
+
+/* Foreground Ingredients */
+.latus2 {
+    top: -10%;
+    left: 55%;
+    width: 30%;
+    z-index: 30;
+    /* Over burger bun */
+    transform: rotate(15deg);
+}
+
+.tamato2 {
+    top: 10%;
+    right: -15%;
+    width: 22%;
+    z-index: 30;
+    /* Over burger */
+    transform: rotate(-25deg);
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-black);
+    padding: 6rem 2rem;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    position: relative;
+    /* Anchor for flying ingredients */
+}
+
+/* Independent ingredients */
+.about-tomato-fly {
+    position: absolute;
+    width: 250px;
+    top: 50px;
+    left: 20%;
+    z-index: 5;
+    opacity: 1;
+    filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+}
+
+.about-lettuce-fly {
+    position: absolute;
+    width: 320px;
+    top: 20px;
+    left: 25%;
+    z-index: 4;
+    opacity: 1;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+    transform: rotate(15deg);
+}
+
+.about-left,
+.about-right {
+    flex: 1;
+    width: 50%;
+}
+
+.about-left {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* plate at bottom center */
+    /* Z-index context for layering */
+    z-index: 10;
+}
+
+.about-plate {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    max-width: 480px;
+    z-index: 1;
+    /* lowest layer */
+    filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.9));
+}
+
+.about-tomato {
+    position: absolute;
+    width: 200px;
+    top: -50px;
+    /* Initially high up for drop animation */
+    left: 15%;
+    z-index: 2;
+    /* behind burger */
+    opacity: 0;
+    /* Hidden initially for GSAP */
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
+}
+
+.about-lettuce-left {
+    position: absolute;
+    width: 250px;
+    bottom: 15%;
+    left: -20%;
+    /* Outside left boundary */
+    z-index: 105;
+    /* Above burger (100 in JS) */
+    opacity: 0;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+    transform: scale(1) rotate(-15deg);
+}
+
+.about-lettuce-right {
+    position: absolute;
+    width: 250px;
+    bottom: 5%;
+    right: -20%;
+    /* Outside right boundary */
+    z-index: 10;
+    /* Behind burger */
+    opacity: 0;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+    transform: scale(1) rotate(15deg);
+}
+
+.about-right h2 {
+    font-size: 3rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.about-right p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* ================= DRINKS SECTION ================= */
+.drinks-section {
+    width: 100%;
+    min-height: 100vh;
+    padding: 8rem 2rem;
+    display: flex;
+    align-items: center;
+    /* Match Hero Section background */
+    background: radial-gradient(circle at 50% 50%, var(--bg-glow-center) 0%, var(--bg-glow-edge) 50%, var(--bg-black) 100%);
+}
+
+.drinks-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.drink-card {
+    position: relative;
+    width: 350px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+    border-radius: 20px;
+    /* Glassmorphism / Dark Card */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.drink-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(255, 126, 51, 0.15);
+    /* Subtle orange glow sale */
+    border-color: rgba(255, 126, 51, 0.3);
+}
+
+.drink-img {
+    position: absolute;
+    height: 520px;
+    /* Burst out of card */
+    bottom: 80px;
+    /* Sits cleanly above title */
+    object-fit: contain;
+    z-index: 5;
+    filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.8));
+    transition: transform 0.3s ease;
+    transform-origin: bottom center;
+}
+
+.drink-card:hover .drink-img {
+    transform: scale(1.05);
+}
+
+.drink-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.drink-decor {
+    position: absolute;
+    width: 280px;
+    /* Significantly larger */
+    top: -80px;
+    left: -80px;
+    z-index: 1;
+    /* Behind drink img */
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.5));
+    opacity: 1;
+}
+
+/* Empty Card Specific */
+.empty-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.empty-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 126, 51, 0.4);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    width: 100%;
+    padding: 4rem 2rem;
+    background-color: var(--bg-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    text-align: center;
+    max-width: 600px;
+}
+
+.footer-heading {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.footer-details p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.footer-details strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* ================= RESPONSIVE BASICS ================= */
+@media (max-width: 900px) {
+    header {
+        padding: 1.5rem 2rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* Simplistic mobile handling */
+    }
+
+    .hero-layers {
+        max-width: 90vw;
+    }
+
+    .burger-main {
+        width: 100%;
+    }
+
+    /* About Section Stacking */
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .about-left,
+    .about-right {
+        width: 100%;
+    }
+
+    .about-left {
+        min-height: 250px;
+        /* Reduced placeholder on mobile */
+    }
+
+    .about-right h2 {
+        font-size: 2.2rem;
+    }
+
+    /* Drink Section Stacking */
+    .drinks-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .drink-card {
+        width: 100%;
+        max-width: 350px;
+        height: 420px;
+    }
+}
